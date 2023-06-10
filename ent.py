@@ -402,17 +402,17 @@ def afd_entonces(lexema):
     
 def lexer(codigo_fuente):
     lexemas = codigo_fuente.split() 
-    tokens = []
+    tokens_reconocidos = []
 
     for lexema in lexemas:
         for tipo, afd in tokens.items():
             resultado = afd(lexema)
             if resultado == "FINAL":
-                tokens.append({"lexema": lexema, "tipo": tipo})
+                tokens_reconocidos.append({"lexema": lexema, "tipo": tipo})
                 break
             elif resultado == "TRAMPA":
                 print("Error: Token no reconocido:", lexema)
                 break
 
-    return tokens
+    return tokens_reconocidos
 
