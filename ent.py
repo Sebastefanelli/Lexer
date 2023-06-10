@@ -1,4 +1,4 @@
-tokens = {
+tokens = [
     "Coma": afd_coma,
     "PuntoYComa": afd_puntoycoma,
     "Entonces": afd_entonces,
@@ -17,8 +17,191 @@ tokens = {
     "Opsuma": afd_opsuma,
     "Id": afd_id,
     "Num": afd_num,
-}
+]
 
+def afd_coma(lexema):
+    if lexema == ",":
+        return "FINAL"
+    else:
+        return "TRAMPA"
+
+
+def afd_equal(lexema):
+    if lexema == "=":
+        return "FINAL"
+    else:
+        return "TRAMPA"
+
+
+def afd_id(lexema):
+    estados = ['A', 'B', 'T']
+    estados_finales = ['B']
+    estado_actual = 'A'
+    for c in lexema:
+        if estado_actual == 'A' and c.isalpha():
+            estado_actual = 'B'
+        elif estado_actual == 'B' and c.isalnum():
+            estado_actual = 'B'
+        else:
+            estado_actual = 'T'
+            break
+
+    if estado_actual in estados_finales:
+        return "FINAL"
+    else:
+        return "TRAMPA"
+
+
+def afd_num(lexema):
+    if lexema.isnumeric():
+        return "FINAL"
+    else:
+        return "TRAMPA"
+
+
+def afd_puntoycoma(lexema):
+    if lexema == ";":
+        return "FINAL"
+    else:
+        return "TRAMPA"
+
+
+def afd_finfunc(lexema):
+    tabla = {
+        'A': {'f': 'B'},
+        'B': {'i': 'C'},
+        'C': {'n': 'D'},
+        'D': {'f': 'E'},
+        'E': {'u': 'F'},
+        'F': {'n': 'G'},
+        'G': {'c': 'H'},
+        'H': {},
+        'T': {}
+    }
+    
+
+def afd_finsi(lexema):
+    tabla = {
+        'A': {'f': 'B'},
+        'B': {'i': 'C'},
+        'C': {'n': 'D'},
+        'D': {'s': 'E'},
+        'E': {'i': 'F'},
+        'F': {},
+        'T': {}
+    }
+    
+
+def afd_func(lexema):
+    tabla = {
+        'A': {'f': 'B'},
+        'B': {'u': 'C'},
+        'C': {'n': 'D'},
+        'D': {'c': 'E'},
+        'E': {},
+        'T': {}
+    }
+    
+
+def afd_hasta(lexema):
+    tabla = {
+        'A': {'h': 'B'},
+        'B': {'a': 'C'},
+        'C': {'s': 'D'},
+        'D': {'t': 'E'},
+        'E': {'a': 'F'},
+        'F': {},
+        'T': {}
+    }
+    
+
+def afd_leer(lexema):
+    tabla = {
+        'A': {'l': 'B'},
+        'B': {'e': 'C'},
+        'C': {'e': 'D'},
+        'D': {'r': 'E'},
+        'E': {},
+        'T': {}
+    }
+    
+    
+
+def afd_mostrar(lexema):
+    tabla = {
+        'A': {'m': 'B'},
+        'B': {'o': 'C'},
+        'C': {'s': 'D'},
+        'D': {'t': 'E'},
+        'E': {'r': 'F'},
+        'F': {'a': 'G'},
+        'G': {'r': 'H'},
+        'H': {},
+        'T': {}
+    }
+    
+
+def afd_repetir(lexema):
+    tabla = {
+        'A': {'r': 'B'},
+        'B': {'e': 'C'},
+        'C': {'p': 'D'},
+        'D': {'e': 'E'},
+        'E': {'t': 'F'},
+        'F': {'i': 'G'},
+        'G': {'r': 'H'},
+        'H': {},
+        'T': {}
+    }
+    
+
+def afd_opmult(lexema):
+    tabla = {
+        'A': {"*": "B", "/": "B"},
+        'B': {},
+        'T': {},
+    }
+    
+
+def afd_oprel(lexema):
+    tabla = {
+        'A': {">": "B", "<": "B", "=": "C"},
+        'B': {"=": "D"},
+        'C': {"=": "D"},
+        'D': {},
+        'T': {}
+    }
+
+    
+
+def afd_opsuma(lexema):
+    tabla = {
+        'A': {"+": "B", "-": "B"},
+        'B': {},
+        'T': {},
+    }
+    
+    
+
+def afd_si(lexema):
+    tabla = {
+        'A': {'s': 'B'},
+        'B': {'i': 'C'},
+        'C': {},
+        'T': {}
+    }
+    
+
+def afd_sino(lexema):
+    tabla = {
+        'A': {'s': 'B'},
+        'B': {'i': 'C'},
+        'C': {'n': 'D'},
+        'D': {'o': 'E'},
+        'E': {},
+        'T': {}
+    }
+    
 
 def afd_entonces(lexema):
   tabla = {
@@ -47,4 +230,3 @@ def afd_entonces(lexema):
       return "TRAMPA"
   else:
       return "NO FINAL"
-print(afd_entonces(input()))
