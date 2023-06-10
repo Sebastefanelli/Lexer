@@ -78,6 +78,20 @@ def afd_finfunc(lexema):
         'H': {},
         'T': {}
     }
+  estado_actual='A'
+  estados_finales=['H']
+  for c in lexema:
+    if c in tabla[estado_actual]:
+      estado_actual = tabla[estado_actual][c]
+    else:
+      estado_actual = 'T'
+      break
+  if estado_actual in estados_finales:
+      return "FINAL"
+  elif estado_actual == 'T':
+      return "TRAMPA"
+  else:
+      return "NO FINAL"
     
 
 def afd_finsi(lexema):
@@ -90,6 +104,20 @@ def afd_finsi(lexema):
         'F': {},
         'T': {}
     }
+  estado_actual='A'
+  estados_finales=['F']
+  for c in lexema:
+    if c in tabla[estado_actual]:
+      estado_actual = tabla[estado_actual][c]
+    else:
+      estado_actual = 'T'
+      break
+  if estado_actual in estados_finales:
+      return "FINAL"
+  elif estado_actual == 'T':
+      return "TRAMPA"
+  else:
+      return "NO FINAL"
     
 
 def afd_func(lexema):
@@ -101,6 +129,20 @@ def afd_func(lexema):
         'E': {},
         'T': {}
     }
+  estado_actual='A'
+  estados_finales=['E']
+  for c in lexema:
+    if c in tabla[estado_actual]:
+      estado_actual = tabla[estado_actual][c]
+    else:
+      estado_actual = 'T'
+      break
+  if estado_actual in estados_finales:
+      return "FINAL"
+  elif estado_actual == 'T':
+      return "TRAMPA"
+  else:
+      return "NO FINAL"
     
 
 def afd_hasta(lexema):
@@ -113,6 +155,20 @@ def afd_hasta(lexema):
         'F': {},
         'T': {}
     }
+  estado_actual='A'
+  estados_finales=['F']
+  for c in lexema:
+    if c in tabla[estado_actual]:
+      estado_actual = tabla[estado_actual][c]
+    else:
+      estado_actual = 'T'
+      break
+  if estado_actual in estados_finales:
+      return "FINAL"
+  elif estado_actual == 'T':
+      return "TRAMPA"
+  else:
+      return "NO FINAL"
     
 
 def afd_leer(lexema):
@@ -124,6 +180,20 @@ def afd_leer(lexema):
         'E': {},
         'T': {}
     }
+  estado_actual='A'
+  estados_finales=['E']
+  for c in lexema:
+    if c in tabla[estado_actual]:
+      estado_actual = tabla[estado_actual][c]
+    else:
+      estado_actual = 'T'
+      break
+  if estado_actual in estados_finales:
+      return "FINAL"
+  elif estado_actual == 'T':
+      return "TRAMPA"
+  else:
+      return "NO FINAL"
     
     
 
@@ -139,6 +209,21 @@ def afd_mostrar(lexema):
         'H': {},
         'T': {}
     }
+  estado_actual='A'
+  estados_finales=['H']
+  for c in lexema:
+    if c in tabla[estado_actual]:
+      estado_actual = tabla[estado_actual][c]
+    else:
+      estado_actual = 'T'
+      break
+  if estado_actual in estados_finales:
+      return "FINAL"
+  elif estado_actual == 'T':
+      return "TRAMPA"
+  else:
+      return "NO FINAL"
+    
     
 
 def afd_repetir(lexema):
@@ -153,6 +238,20 @@ def afd_repetir(lexema):
         'H': {},
         'T': {}
     }
+  estado_actual='A'
+  estados_finales=['H']
+  for c in lexema:
+    if c in tabla[estado_actual]:
+      estado_actual = tabla[estado_actual][c]
+    else:
+      estado_actual = 'T'
+      break
+  if estado_actual in estados_finales:
+      return "FINAL"
+  elif estado_actual == 'T':
+      return "TRAMPA"
+  else:
+      return "NO FINAL"
     
 
 def afd_opmult(lexema):
@@ -161,6 +260,20 @@ def afd_opmult(lexema):
         'B': {},
         'T': {},
     }
+  estado_actual='A'
+  estados_finales=['B']
+  for c in lexema:
+    if c in tabla[estado_actual]:
+      estado_actual = tabla[estado_actual][c]
+    else:
+      estado_actual = 'T'
+      break
+  if estado_actual in estados_finales:
+      return "FINAL"
+  elif estado_actual == 'T':
+      return "TRAMPA"
+  else:
+      return "NO FINAL"
     
 
 def afd_oprel(lexema):
@@ -171,6 +284,20 @@ def afd_oprel(lexema):
         'D': {},
         'T': {}
     }
+  estado_actual='A'
+  estados_finales=['D']
+  for c in lexema:
+    if c in tabla[estado_actual]:
+      estado_actual = tabla[estado_actual][c]
+    else:
+      estado_actual = 'T'
+      break
+  if estado_actual in estados_finales:
+      return "FINAL"
+  elif estado_actual == 'T':
+      return "TRAMPA"
+  else:
+      return "NO FINAL"
 
     
 
@@ -180,7 +307,20 @@ def afd_opsuma(lexema):
         'B': {},
         'T': {},
     }
-    
+  estado_actual='A'
+  estados_finales=['B']
+  for c in lexema:
+    if c in tabla[estado_actual]:
+      estado_actual = tabla[estado_actual][c]
+    else:
+      estado_actual = 'T'
+      break
+  if estado_actual in estados_finales:
+      return "FINAL"
+  elif estado_actual == 'T':
+      return "TRAMPA"
+  else:
+      return "NO FINAL"
     
 
 def afd_si(lexema):
@@ -190,6 +330,20 @@ def afd_si(lexema):
         'C': {},
         'T': {}
     }
+  estado_actual='A'
+  estados_finales=['C']
+  for c in lexema:
+    if c in tabla[estado_actual]:
+      estado_actual = tabla[estado_actual][c]
+    else:
+      estado_actual = 'T'
+      break
+  if estado_actual in estados_finales:
+      return "FINAL"
+  elif estado_actual == 'T':
+      return "TRAMPA"
+  else:
+      return "NO FINAL"
     
 
 def afd_sino(lexema):
@@ -201,6 +355,20 @@ def afd_sino(lexema):
         'E': {},
         'T': {}
     }
+  estado_actual='A'
+  estados_finales=['E']
+  for c in lexema:
+    if c in tabla[estado_actual]:
+      estado_actual = tabla[estado_actual][c]
+    else:
+      estado_actual = 'T'
+      break
+  if estado_actual in estados_finales:
+      return "FINAL"
+  elif estado_actual == 'T':
+      return "TRAMPA"
+  else:
+      return "NO FINAL"
     
 
 def afd_entonces(lexema):
@@ -230,3 +398,21 @@ def afd_entonces(lexema):
       return "TRAMPA"
   else:
       return "NO FINAL"
+    
+    
+def lexer(codigo_fuente):
+    lexemas = codigo_fuente.split()  # Dividir el código fuente por espacios en blanco
+    tokens = []
+
+    for lexema in lexemas:
+        for tipo, afd in tokens.items():
+            resultado = afd(lexema)
+            if resultado == "FINAL":
+                tokens.append({"lexema": lexema, "tipo": tipo})
+                break
+            elif resultado == "TRAMPA":
+                print("Error: Token no reconocido:", lexema)
+                break
+
+    return tokens
+
