@@ -1,4 +1,23 @@
-
+tokens = {
+    "Coma": afd_coma,
+    "PuntoYComa": afd_puntoycoma,
+    "Entonces": afd_entonces,
+    "Equal": afd_equal,
+    "FinFunc": afd_finfunc,
+    "FinSi": afd_finsi,
+    "Func": afd_func,
+    "FinSi": afd_finsi,
+    "Hasta": afd_hasta,
+    "Leer": afd_leer,
+    "Mostrar": afd_mostrar,
+    "Si": afd_si,
+    "Sino": afd_sino,
+    "Oprel": afd_oprel,
+    "Opmult": afd_opmult,
+    "Opsuma": afd_opsuma,
+    "Id": afd_id,
+    "Num": afd_num,
+}
 
 
 def afd_entonces(lexema):
