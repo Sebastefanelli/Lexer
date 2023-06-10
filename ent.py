@@ -401,7 +401,7 @@ def afd_entonces(lexema):
     
     
 def lexer(codigo_fuente):
-    lexemas = codigo_fuente.split()  # Dividir el código fuente por espacios en blanco
+    lexemas = codigo_fuente.split() 
     tokens = []
 
     for lexema in lexemas:
