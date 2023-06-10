@@ -1,4 +1,4 @@
-tokens = [
+tokens = {
     "Coma": afd_coma,
     "PuntoYComa": afd_puntoycoma,
     "Entonces": afd_entonces,
@@ -17,7 +17,7 @@ tokens = [
     "Opsuma": afd_opsuma,
     "Id": afd_id,
     "Num": afd_num,
-]
+}
 
 def afd_coma(lexema):
     if lexema == ",":
