@@ -412,7 +412,7 @@ def lexer(codigo_fuente):
                 break
             elif resultado == "TRAMPA":
                 print("Error: Token no reconocido:", lexema)
-                break
+                continue
 
     return tokens_reconocidos
 
