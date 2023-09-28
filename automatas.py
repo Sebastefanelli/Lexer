@@ -250,7 +250,7 @@ SD = {
         "Id": ["Id"]
     }
 }
-from lexerp.lexerp import lexer
+from lexerp import lexer
 
 
 def parser(lista):
