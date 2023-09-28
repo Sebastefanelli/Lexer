@@ -543,7 +543,7 @@ def lexer(programa):
                 tokens_final.append(token)
         if tokens_posibles_1mas == []:
             if tokens_final != []:
-                tokens_out.append({tokens_final[0]: lexema})
+                tokens_out.append((tokens_final[0]: lexema))
                 lexema1mas = programa[i]
                 tokens_posibles = []
             else:
