@@ -582,36 +582,39 @@ def parser(lista):
         datos_locales['error'] = False
         actual = datos_locales['tokens'][datos_locales['index']][0]
         simbolos_directrices = SD[simbolo]
-        if actual in simbolos_directrices:
-            cadena_derivacion = simbolos_directrices[actual]
-            derivacion = [simbolo] + cadena_derivacion
-            procesar(cadena_derivacion)
-            return derivacion
-        else:
+        derivaciones = []
+        for clave in simbolos_directrices:
+            if actual == clave:
+                cadena_derivacion = simbolos_directrices[clave]
+                derivacion = [simbolo] + cadena_derivacion
+                cadena_derivacion_copy = cadena_derivacion.copy()
+                derivaciones.append(derivacion)
+                datos_locales['derivaciones'].append(derivacion)
+                procesar(cadena_derivacion_copy)
+                break
+
+        if not derivaciones:
             datos_locales['error'] = True
-            return None
+        return derivaciones
 
     def principal():
-        derivaciones = []
         while True:
-            derivacion = procedimiento_PNI(simbolo_inicial)
+            derivaciones = procedimiento_PNI(simbolo_inicial)
             if datos_locales['error']:
                 print('La cadena no pertenece al lenguaje.')
                 break
-            if derivacion:
-                derivaciones.append(derivacion)
+            if not derivaciones:
+                break
             actual = datos_locales['tokens'][datos_locales['index']][0]
             if actual == '#':
                 print('La cadena pertenece al lenguaje.')
                 print('Derivaciones utilizadas:')
-                for deriv in derivaciones:
+                for deriv in datos_locales['derivaciones']:
                     print(' -> '.join(deriv))
                 break
         return not datos_locales['error']
 
     return principal()
-
-
 
 
 tests = [
