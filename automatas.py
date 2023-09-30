@@ -559,6 +559,7 @@ def parser(lista):
         'index': 0,
         'error': False,
         'error_t': None,
+        'derivaciones_utilizadas':[]
     }
 
     def procesar(cadena):
@@ -575,25 +576,39 @@ def parser(lista):
                 if datos_locales['error']:
                     break
 
+    # Paso 1: Define una lista para almacenar las derivaciones
+
+
+# ...
+
     def procedimiento_PNI(simbolo):
         datos_locales['error'] = False
         actual = datos_locales['tokens'][datos_locales['index']][0]
         simbolos_directrices = SD[simbolo]
         if actual in simbolos_directrices:
-            procesar(simbolos_directrices[actual])
+            produccion = simbolos_directrices[actual]
+        # Paso 2: Agrega la derivación a la lista
+            datos_locales[derivaciones_utilizadas.append(f"{simbolo} -> {', '.join(produccion)}")]
+            procesar(produccion)
         else:
             datos_locales['error'] = True
+
+# ...
 
     def principal():
         procedimiento_PNI(simbolo_inicial)
         actual = datos_locales['tokens'][datos_locales['index']][0]
         if actual != '#' or datos_locales['error']:
-            print('la cadena no pertenece al lenguaje ')
+            print('La cadena no pertenece al lenguaje')
             return False
-        print('la cadena pertence al lenguaje')
+        print('La cadena pertenece al lenguaje')
+
+    # Paso 3: Muestra la lista de derivaciones al final
+        print("\nDerivaciones utilizadas:")
+        for derivacion in datos_locales[derivaciones_utilizadas]:
+            print(derivacion)
 
         return True
-
     return principal()
 
 
