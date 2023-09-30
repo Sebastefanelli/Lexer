@@ -571,48 +571,41 @@ def parser(lista):
                     datos_locales['index'] += 1
                 else:
                     datos_locales['error'] = True
+                    break
             elif simbolo in VN:
-                derivaciones = procedimiento_PNI(simbolo)
+                procedimiento_PNI(simbolo)
                 if datos_locales['error']:
                     break
-                if derivaciones:
-                    datos_locales['derivaciones'].extend(derivaciones)
 
     def procedimiento_PNI(simbolo):
         datos_locales['error'] = False
         actual = datos_locales['tokens'][datos_locales['index']][0]
         simbolos_directrices = SD[simbolo]
-        derivaciones = []
 
-        for clave in simbolos_directrices:
-            if actual == clave:
-                cadena_derivacion = simbolos_directrices[clave]
-                derivacion = [simbolo] + cadena_derivacion
-                cadena_derivacion_copy = cadena_derivacion.copy()
-                derivaciones.append(derivacion)
-                procesar(cadena_derivacion_copy)
-                break
-
-        if not derivaciones:
+        if actual in simbolos_directrices:
+            cadena_derivacion = simbolos_directrices[actual]
+            derivacion = [simbolo, cadena_derivacion]
+            datos_locales["derivaciones"].append(derivacion)
+            procesar(cadena_derivacion)
+        else:
             datos_locales['error'] = True
-        return derivaciones
 
     def principal():
-        while True:
-            derivaciones = procedimiento_PNI(simbolo_inicial)
-            if datos_locales['error']:
-                print('La cadena no pertenece al lenguaje.')
-                break
-            if not derivaciones:
-                break
-            actual = datos_locales['tokens'][datos_locales['index']][0]
-            if actual == '#':
-                print('La cadena pertenece al lenguaje.')
-                print('Derivaciones utilizadas:')
-                for deriv in datos_locales['derivaciones']:
-                    print(' -> '.join(deriv))
-                break
-        return not datos_locales['error']
+        procedimiento_PNI(simbolo_inicial)
+        if datos_locales['error']:
+            print('La cadena no pertenece al lenguaje.')
+            return False
+        actual = datos_locales['tokens'][datos_locales['index']][0]
+        if actual == '#':
+            print('La cadena pertenece al lenguaje.')
+            print('Derivaciones utilizadas:\n')
+            for deriv in datos_locales['derivaciones']:
+                print(deriv[0] + " -> ", end="")
+                if deriv[1]:
+                    print(' '.join(deriv[1]))
+                else:
+                    print("(lambda)")
+            return True
 
     return principal()
 
