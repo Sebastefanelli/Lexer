@@ -559,7 +559,7 @@ def parser(lista):
         'index': 0,
         'error': False,
         'error_t': None,
-        'derivaciones_utilizadas':[]
+        'derivaciones': []
     }
 
     def procesar(cadena):
@@ -572,44 +572,46 @@ def parser(lista):
                 else:
                     datos_locales['error'] = True
             elif simbolo in VN:
-                procedimiento_PNI(simbolo)
+                derivacion = procedimiento_PNI(simbolo)
                 if datos_locales['error']:
                     break
-
-    # Paso 1: Define una lista para almacenar las derivaciones
-
-
-# ...
+                if derivacion:
+                    datos_locales['derivaciones'].append(derivacion)
 
     def procedimiento_PNI(simbolo):
         datos_locales['error'] = False
         actual = datos_locales['tokens'][datos_locales['index']][0]
         simbolos_directrices = SD[simbolo]
         if actual in simbolos_directrices:
-            produccion = simbolos_directrices[actual]
-        # Paso 2: Agrega la derivación a la lista
-            datos_locales[derivaciones_utilizadas.append(f"{simbolo} -> {', '.join(produccion)}")]
-            procesar(produccion)
+            cadena_derivacion = simbolos_directrices[actual]
+            derivacion = [simbolo] + cadena_derivacion
+            procesar(cadena_derivacion)
+            return derivacion
         else:
             datos_locales['error'] = True
-
-# ...
+            return None
 
     def principal():
-        procedimiento_PNI(simbolo_inicial)
-        actual = datos_locales['tokens'][datos_locales['index']][0]
-        if actual != '#' or datos_locales['error']:
-            print('La cadena no pertenece al lenguaje')
-            return False
-        print('La cadena pertenece al lenguaje')
+        derivaciones = []
+        while True:
+            derivacion = procedimiento_PNI(simbolo_inicial)
+            if datos_locales['error']:
+                print('La cadena no pertenece al lenguaje.')
+                break
+            if derivacion:
+                derivaciones.append(derivacion)
+            actual = datos_locales['tokens'][datos_locales['index']][0]
+            if actual == '#':
+                print('La cadena pertenece al lenguaje.')
+                print('Derivaciones utilizadas:')
+                for deriv in derivaciones:
+                    print(' -> '.join(deriv))
+                break
+        return not datos_locales['error']
 
-    # Paso 3: Muestra la lista de derivaciones al final
-        print("\nDerivaciones utilizadas:")
-        for derivacion in datos_locales[derivaciones_utilizadas]:
-            print(derivacion)
-
-        return True
     return principal()
+
+
 
 
 tests = [
